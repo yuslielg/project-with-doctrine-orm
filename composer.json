@@ -1,0 +1,22 @@
+{
+    "name": "contrask/project-with-doctrine-orm",
+    "description": "Provides an implementation of contrask/project-as-abstract using doctrine/orm for persistence",
+    "type": "library",
+    "keywords": ["project"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Yosmany Garcia",
+            "email": "yosmanyga@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "cubalider/project-as-abstract": "0.1.*",
+        "doctrine/orm": "2.4.*",
+        "gedmo/doctrine-extensions": "2.3.*"
+    },
+    "autoload": {
+        "psr-0": { "Contrask\\Component\\Project": "src/" }
+    }
+}
