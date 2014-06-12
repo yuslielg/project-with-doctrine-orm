@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @author Yusliel Garcia <yuslielg@gmail.com>
  * @ORM\Entity
  */
-class Project implements MessageInterface 
+class Project implements ProjectInterface
 {
     /**
      * @var integer
