@@ -82,4 +82,63 @@ class ProjectManagerTest extends \PHPUnit_Framework_TestCase
         $projectManager = new ProjectManager($this->em);
         $this->assertAttributeEquals(1, 'id', $projectManager->pick(array('id' => '1')));
     }
+
+    /**
+     * @covers \Contrask\Component\Project\Manager\ProjectManager::collect
+     */
+    public function testCollectWithNullCriteria()
+    {
+        /*Fixtures*/
+        $project = new Project();
+        $this->em->persist($project);
+
+        $project1 = new Project();
+        $this->em->persist($project1);
+
+        $this->em->flush();
+
+        /*Tests*/
+        $projectManager = new ProjectManager($this->em);
+        $this->assertEquals(2, count($projectManager->collect()));
+    }
+
+    /**
+     * @covers \Contrask\Component\Project\Manager\ProjectManager::collect
+     */
+    public function testCollectWithStringCriteria()
+    {
+        /*Fixtures*/
+        $project = new Project();
+        $this->em->persist($project);
+
+        $project1 = new Project();
+        $this->em->persist($project1);
+
+        $this->em->flush();
+
+        /*Tests*/
+        $projectManager = new ProjectManager($this->em);
+        $this->assertEquals(1, count($projectManager->collect('1')));
+        $this->assertEquals(0, count($projectManager->collect('3')));
+    }
+
+    /**
+     * @covers \Contrask\Component\Project\Manager\ProjectManager::collect
+     */
+    public function testCollectWithArrayCriteria()
+    {
+        /*Fixtures*/
+        $project = new Project();
+        $this->em->persist($project);
+
+        $project1 = new Project();
+        $this->em->persist($project1);
+
+        $this->em->flush();
+
+        /*Tests*/
+        $projectManager = new ProjectManager($this->em);
+        $this->assertEquals(1, count($projectManager->collect(array('id' => '1'))));
+        $this->assertEquals(0, count($projectManager->collect(array('id' => '3'))));
+    }
 }
