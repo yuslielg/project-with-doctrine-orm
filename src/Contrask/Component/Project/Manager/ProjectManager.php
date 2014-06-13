@@ -2,6 +2,7 @@
 
 namespace Contrask\Component\Project\Manager;
 
+use Contrask\Component\Project\Manager\ProjectManagerInterface;
 use Doctrine\ORM\EntityManagerInterface;
 
 /**
