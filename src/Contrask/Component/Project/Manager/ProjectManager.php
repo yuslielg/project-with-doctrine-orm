@@ -53,7 +53,7 @@ class ProjectManager implements ProjectManagerInterface
     public function pick($criteria)
     {
         if (is_string($criteria)) {
-           $criteria = array('id' => $criteria);
+           $criteria = array('strid' => $criteria);
         }
 
         return $this->repository->findOneBy($criteria);
@@ -74,7 +74,7 @@ class ProjectManager implements ProjectManagerInterface
         }
 
         if (is_string($criteria)) {
-           $criteria = array('id' => $criteria);
+           $criteria = array('strid' => $criteria);
         }
 
         return $this->repository->findBy($criteria);
