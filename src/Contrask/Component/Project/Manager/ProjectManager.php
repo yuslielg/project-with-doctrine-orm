@@ -2,9 +2,6 @@
 
 namespace Contrask\Component\Project\Manager;
 
-use Contrask\Component\Project\Manager\ProjectManagerInterface;
-use Doctrine\ORM\EntityManagerInterface;
-
 /**
  * @author Yusliel Garcia <yuslielg@gmail.com>
  */
@@ -14,11 +11,6 @@ class ProjectManager implements ProjectManagerInterface
      * @var \Doctrine\ORM\EntityManagerInterface
      */
     private $em;
-
-    /**
-     * @var string
-     */
-    private $class;
 
     /**
      * @var \Doctrine\ORM\EntityRepository
@@ -31,16 +23,13 @@ class ProjectManager implements ProjectManagerInterface
      * Additionally it creates a repository using $em, for given class
      *
      * @param EntityManagerInterface $em
-     * @param string $class
      */
     public function __construct(
-        EntityManagerInterface $em,
-        $class = 'Contrask\Component\Project\Entity\Project'
+        EntityManagerInterface $em
     )
     {
         $this->em = $em;
-        $this->class = $em->getClassMetadata($class)->getName();
-        $this->repository = $this->em->getRepository($class);
+        $this->repository = $this->em->getRepository('Contrask\Component\Project\Model\Project');
     }
 
     /**
