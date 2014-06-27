@@ -2,7 +2,7 @@
 
 namespace Contrask\Test\Component\Project\Manager;
 
-use Contrask\Component\Project\Entity\Project;
+use Contrask\Component\Project\Model\Project;
 use Contrask\Component\Project\Manager\ProjectManager;
 use Contrask\Test\Component\Project\EntityManagerBuilder;
 use Doctrine\ORM\EntityManager;
@@ -22,13 +22,10 @@ class ProjectManagerTest extends \PHPUnit_Framework_TestCase
         $builder = new EntityManagerBuilder();
         $this->em = $builder->createEntityManager(
             array(
-                'Contrask\Component\Project\Entity\Project'
+                sprintf("%s/../../../../../../src/Contrask/Component/Project/Resources/config/doctrine", __DIR__),
             ),
             array(
-                
-            ),
-            array(
-                'Contrask\Component\Project\Entity\ProjectInterface' => 'Contrask\Component\Project\Entity\Project'
+                'Contrask\Component\Project\Model\Project',
             )
         );
     }
@@ -38,17 +35,10 @@ class ProjectManagerTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructor()
     {
-        $class = 'Contrask\Component\Project\Entity\Project';
-        $metadata = $this->getMock('Doctrine\Common\Persistence\Mapping\ClassMetadata');
-        $metadata->expects($this->once())->method('getName')->will($this->returnValue($class));
-        $em = $this->getMock('Doctrine\ORM\EntityManagerInterface');
-        $em->expects($this->once())->method('getClassMetadata')->with($class)->will($this->returnValue($metadata));
-        /** @var \Doctrine\ORM\EntityManagerInterface $em */
-        $manager = new ProjectManager($em, $class);
+        $manager = new ProjectManager($this->em);
 
-        $this->assertAttributeEquals($em, 'em', $manager);
-        $this->assertAttributeEquals($class, 'class', $manager);
-        $this->assertAttributeEquals($em->getRepository('Contrask\Component\Project\Entity\Project'), 'repository', $manager);
+        $this->assertAttributeEquals($this->em, 'em', $manager);
+        $this->assertAttributeEquals($this->em->getRepository('Contrask\Component\Project\Model\Project'), 'repository', $manager);
     }
 
     /**
