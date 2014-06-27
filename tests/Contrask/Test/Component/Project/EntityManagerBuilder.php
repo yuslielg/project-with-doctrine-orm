@@ -1,6 +1,6 @@
 <?php
 
-namespace Cubalider\Test\Component\Sms;
+namespace Contrask\Test\Component\Project;
 
 use Doctrine\Common\EventManager;
 use Doctrine\ORM\EntityManager;
