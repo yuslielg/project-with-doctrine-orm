@@ -88,10 +88,10 @@ class ProjectManagerTest extends \PHPUnit_Framework_TestCase
         $project->setName('bar');
         $this->em->persist($project);
 
-        $project1 = new Project();
+        $project = new Project();
         $project->setStrid('foo 1');
         $project->setName('bar 1');
-        $this->em->persist($project1);
+        $this->em->persist($project);
 
         $this->em->flush();
 
@@ -111,10 +111,10 @@ class ProjectManagerTest extends \PHPUnit_Framework_TestCase
         $project->setName('bar');
         $this->em->persist($project);
 
-        $project1 = new Project();
+        $project = new Project();
         $project->setStrid('foo 1');
         $project->setName('bar 1');
-        $this->em->persist($project1);
+        $this->em->persist($project);
 
         $this->em->flush();
 
