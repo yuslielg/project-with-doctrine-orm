@@ -48,13 +48,15 @@ class ProjectManagerTest extends \PHPUnit_Framework_TestCase
     {
         /*Fixtures*/
         $project = new Project();
+        $project->setStrid('foo');
+        $project->setName('bar');
         $this->em->persist($project);
 
         $this->em->flush();
 
         /*Tests*/
         $projectManager = new ProjectManager($this->em);
-        $this->assertAttributeEquals(1, 'id', $projectManager->pick('1'));
+        $this->assertEquals($project, $projectManager->pick('foo'));
     }
 
     /**
@@ -64,13 +66,15 @@ class ProjectManagerTest extends \PHPUnit_Framework_TestCase
     {
         /*Fixtures*/
         $project = new Project();
+        $project->setStrid('foo');
+        $project->setName('bar');
         $this->em->persist($project);
 
         $this->em->flush();
 
         /*Tests*/
         $projectManager = new ProjectManager($this->em);
-        $this->assertAttributeEquals(1, 'id', $projectManager->pick(array('id' => '1')));
+        $this->assertEquals($project, $projectManager->pick(array('name' => 'bar')));
     }
 
     /**
@@ -80,9 +84,13 @@ class ProjectManagerTest extends \PHPUnit_Framework_TestCase
     {
         /*Fixtures*/
         $project = new Project();
+        $project->setStrid('foo');
+        $project->setName('bar');
         $this->em->persist($project);
 
         $project1 = new Project();
+        $project->setStrid('foo 1');
+        $project->setName('bar 1');
         $this->em->persist($project1);
 
         $this->em->flush();
@@ -99,16 +107,20 @@ class ProjectManagerTest extends \PHPUnit_Framework_TestCase
     {
         /*Fixtures*/
         $project = new Project();
+        $project->setStrid('foo');
+        $project->setName('bar');
         $this->em->persist($project);
 
         $project1 = new Project();
+        $project->setStrid('foo 1');
+        $project->setName('bar 1');
         $this->em->persist($project1);
 
         $this->em->flush();
 
         /*Tests*/
         $projectManager = new ProjectManager($this->em);
-        $this->assertEquals(1, count($projectManager->collect(array('id' => '1'))));
-        $this->assertEquals(0, count($projectManager->collect(array('id' => '3'))));
+        $this->assertEquals(1, count($projectManager->collect(array('strid' => 'foo'))));
+        $this->assertEquals(0, count($projectManager->collect(array('name' => 'foo'))));
     }
 }
