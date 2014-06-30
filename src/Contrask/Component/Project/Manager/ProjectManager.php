@@ -64,10 +64,6 @@ class ProjectManager implements ProjectManagerInterface
             return $this->repository->findAll();
         }
 
-        if (is_string($criteria)) {
-           $criteria = array('strid' => $criteria);
-        }
-
         return $this->repository->findBy($criteria);
     }
 }
