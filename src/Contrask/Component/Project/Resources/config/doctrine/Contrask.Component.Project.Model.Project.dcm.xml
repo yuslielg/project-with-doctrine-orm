@@ -5,9 +5,11 @@
                   http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
 
     <entity name="Contrask\Component\Project\Model\Project" table="projects">
-        <id name="strid"></id>
+        <id name="strid" type="string">
+            <generator strategy="NONE"/>
+        </id>
 
-        <field name="name"></field>
+        <field name="name" type="string"></field>
     </entity>
 
 </doctrine-mapping>
