@@ -123,4 +123,58 @@ class ProjectManagerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(1, count($projectManager->collect(array('strid' => 'foo'))));
         $this->assertEquals(0, count($projectManager->collect(array('name' => 'foo'))));
     }
+
+    /**
+    * @covers \Contrask\Component\Project\Manager\ProjectManager::add
+    */
+    public function testAdd()
+    {
+        /*Fixtures*/
+        $project = new Project();
+        $project->setStrid('foo');
+        $project->setName('bar');
+
+        /*Tests*/
+        $projectManager = new ProjectManager($this->em);
+        $projectManager->add($project);
+        $this->assertEquals(1, count($projectManager->collect()));
+    }
+
+    public function testUpdate()
+    {
+        /*Fixtures*/
+        $project = new Project();
+        $project->setStrid('foo');
+        $project->setName('bar');
+        $this->em->persist($project);
+        $this->em->flush();
+
+        /*Tests*/
+        $projectManager = new ProjectManager($this->em);
+        $project = $projectManager->pick('foo');
+        $project->setName('bar 1');
+        $projectManager->update($project);
+        $this->assertEquals('bar 1', $projectManager->pick('foo')->getName());
+    }
+
+    /**
+     * @covers \Contrask\Component\Project\Manager\ProjectManager::remove
+     */
+    public function testRemove()
+    {
+        /*Fixtures*/
+        $project1 = new Project();
+        $project1->setStrid('foo');
+        $project1->setName('bar');
+        $this->em->persist($project1);
+        $project2 = new Project();
+        $project2->setStrid('foo 1');
+        $project2->setName('bar 1');
+        $this->em->persist($project2);
+
+        /*Tests*/
+        $projectManager = new ProjectManager($this->em);
+        $projectManager->remove($project1);
+        $this->assertEquals(1, count($projectManager->collect()));
+    }
 }
