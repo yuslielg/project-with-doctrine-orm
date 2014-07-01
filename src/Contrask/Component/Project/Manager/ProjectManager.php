@@ -3,6 +3,7 @@
 namespace Contrask\Component\Project\Manager;
 
 use Doctrine\ORM\EntityManager;
+use Contrask\Component\Project\Model\Project;
 
 /**
  * @author Yusliel Garcia <yuslielg@gmail.com>
@@ -65,5 +66,40 @@ class ProjectManager implements ProjectManagerInterface
         }
 
         return $this->repository->findBy($criteria);
+    }
+
+    /**
+     * Adds given project
+     *
+     * @param Project $project
+     * @return void
+     */
+    public function add(Project $project)
+    {
+        $this->em->persist($project);
+        $this->em->flush();
+    }
+
+    /**
+     * Updates given project
+     *
+     * @param Project $project
+     * @return void
+     */
+    public function update(Project $project)
+    {
+        $this->em->flush($project);
+    }
+
+    /**
+     * Removes given project
+     *
+     * @param Project $project
+     * @return void
+     */
+    public function remove(Project $project)
+    {
+        $this->em->remove($project);
+        $this->em->flush();
     }
 }
