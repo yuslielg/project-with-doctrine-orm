@@ -81,7 +81,7 @@ class ProjectManager implements ProjectManagerInterface
     }
 
     /**
-     * Update given project
+     * Updates given project
      *
      * @param Project $project
      * @return void
