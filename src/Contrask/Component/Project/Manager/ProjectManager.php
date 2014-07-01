@@ -3,6 +3,7 @@
 namespace Contrask\Component\Project\Manager;
 
 use Doctrine\ORM\EntityManager;
+use Contrask\Component\Project\Model\Project;
 
 /**
  * @author Yusliel Garcia <yuslielg@gmail.com>
