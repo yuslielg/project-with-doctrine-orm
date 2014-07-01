@@ -66,4 +66,39 @@ class ProjectManager implements ProjectManagerInterface
 
         return $this->repository->findBy($criteria);
     }
+
+    /**
+     * Adds given project
+     *
+     * @param Project $project
+     * @return void
+     */
+    public function add(Project $project)
+    {
+        $this->em->persist($project);
+        $this->em->flush();
+    }
+
+    /**
+     * Update given project
+     *
+     * @param Project $project
+     * @return void
+     */
+    public function update(Project $project)
+    {
+        $this->em->flush($project);
+    }
+
+    /**
+     * Removes given project
+     *
+     * @param Project $project
+     * @return void
+     */
+    public function remove(Project $project)
+    {
+        $this->em->remove($project);
+        $this->em->flush();
+    }
 }
