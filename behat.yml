@@ -1,0 +1,11 @@
+default:
+    extensions:
+        Yosmanyga\DoctrineExtension\ServiceContainer\DoctrineExtension:
+            mappings:
+                - "src/Crowdvalley/Network/Resources/config/doctrine"
+    suites:
+        network:
+            contexts:
+                - Contrask\Project\Features\ProjectContext
+            filters:
+                tags: @project
