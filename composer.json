@@ -14,7 +14,12 @@
         "php": ">=5.3.0",
         "contrask/project-as-abstract": "0.1.*",
         "doctrine/orm": "2.4.*",
+        "yosmanyga/dql-fit": "0.1.*",
         "gedmo/doctrine-extensions": "2.3.*"
+    },
+    "require-dev": {
+        "behat/behat": "3.0.*",
+        "yosmanyga/behat-doctrine-extension": "0.1.*"
     },
     "autoload": {
         "psr-0": { "Contrask\\Component\\Project": "src/" }
