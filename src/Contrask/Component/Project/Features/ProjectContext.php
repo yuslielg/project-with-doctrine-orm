@@ -9,6 +9,7 @@ use Contrask\Component\Project\Manager\ProjectManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Tools\SchemaTool;
 use Yosmanyga\DoctrineExtension\Context\DoctrineAwareContext;
+use Behat\Behat\Tester\Exception\PendingException;
 
 /**
  * @author Yusliel Garcia <yuslielg@gmail.com>
@@ -107,6 +108,22 @@ class ProjectContext implements SnippetAcceptingContext, DoctrineAwareContext
         $manager = new ProjectManager($this->em);
         $manager->add($project);
     }
+    
+    /**
+     * @When I add the following project:
+     */
+    public function iAddTheFollowingProject2(TableNode $table)
+    {
+        $data = $table->getRowsHash();
+
+        $project = new Project();
+        $project->setStrid($data['strid']);
+        $project->setName($data['name']);
+
+        $manager = new ProjectManager($this->em);
+        $manager->add($project);
+    }
+
 
     /**
      * @When /^I remove the picked project$/
