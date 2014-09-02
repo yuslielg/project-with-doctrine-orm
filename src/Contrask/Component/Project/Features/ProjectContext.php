@@ -9,7 +9,6 @@ use Contrask\Component\Project\Manager\ProjectManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Tools\SchemaTool;
 use Yosmanyga\DoctrineExtension\Context\DoctrineAwareContext;
-use Behat\Behat\Tester\Exception\PendingException;
 
 /**
  * @author Yusliel Garcia <yuslielg@gmail.com>
